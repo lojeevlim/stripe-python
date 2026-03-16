@@ -1,0 +1,87 @@
+account = stripe.Account.create(
+            country="JP",
+            email=payload['email'],
+            business_type="individual",  # or "company"
+            business_profile={
+               
+                "product_description": "We provide virtual tours for tourists.",
+                
+                "name": "Your Business Name",
+                "url": "https://www.your-business-website.com",
+                "mcc": "5812",  # MCC code for your business type (e.g., restaurant, retail)
+            },
+            capabilities={
+                "card_payments": {"requested": True},
+                "transfers": {"requested": True},
+                "link_payments": {"requested": True},
+            },
+            controller={
+                "stripe_dashboard": {"type": "none"},
+                "fees": {"payer": "application"},
+                "losses": {"payments": "application"},
+                "requirement_collection": "application",
+            },
+            individual={
+                "first_name": "Taro",  # Representative's first name
+                "last_name": "Yamada",  # Representative's last name
+                "first_name_kana": "タロウ",  # Representative's first name in Kana
+                "last_name_kana": "ヤマダ",
+                "first_name_kanji": "太郎",
+                "last_name_kanji": "山田",
+                "email": "taro.yamada@example.com",
+                "phone": "+815012345678",
+                'dob': {
+                    'day': 1,
+                    'month': 1,
+                    'year': 1990,
+                },
+                "address": {
+                    "line1": "123 Shibuya Street",  # Kanji address line 1
+                    "line2": "Apartment 202",  # Kanji address line 2
+                    "city": "渋谷",  # City in Kanji
+                    "postal_code": "1500002",  # Postal code
+                    "country": "JP"  # Country (Japan)
+                },
+                
+             
+             
+                "address_kana": {
+                "country": "JP", 
+                "postal_code": "1500001",
+                "state": "ﾄｳｷﾖｳﾄ", 
+                "city": "ｼﾌﾞﾔ", 
+                "town": "ｼﾞﾝｸﾞｳﾏｴ 1-", 
+                "line1": "5-8", 
+                "line2": "ｼﾞﾝｸﾞｳﾏｴﾀﾜｰﾋﾞﾙﾃﾞｨﾝｸﾞ22F", 
+                },
+
+                "address_kanji": {
+                "country": "JP", 
+                "postal_code": "１５００００１",
+                "state": "東京都", 
+                "city": "渋谷区", 
+                "town": "神宮前　１丁目",
+                "line1": "５－８", 
+                "line2": "神宮前タワービルディング22F", 
+                },
+                
+                
+                       
+                "verification": {
+                    "document": {
+                        "front": file.id,  # Use a valid Stripe File ID for document upload
+                    },
+                },
+            },
+            external_account={
+                "object": "bank_account",
+                "country": "JP",
+                "currency": "jpy",
+                "account_holder_name": 'Your Name',
+                "account_number": "0001234",
+                "routing_number": "1100000",  # Optional for Japan
+            },
+            tos_acceptance={
+            "date": "1737954146",  # Current timestamp
+            "ip": "127.0.0.1",  # Replace with the user's actual IP address
+    },
